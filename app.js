@@ -7,10 +7,10 @@ const mongoose = require('mongoose')
 
 mongoose.connect('mongodb://localhost:27017/API', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        console.log("Connected successfully to MongoDB");
+        console.log("Connected successfully ");
     })
     .catch((error) => {
-        console.error("MongoDB connection error:", error);
+        console.error("connection error:", error);
     });
 
 var usersRouter = require('./routes/users');

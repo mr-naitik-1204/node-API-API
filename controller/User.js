@@ -11,15 +11,15 @@ exports.createdata = async (req, res) => {
         })
     } catch (error) {
         res.status(404).json({
-            status:"fail",
-            Message:"not enter"
+            status: "fail",
+            Message: "not enter"
         })
 
     }
 }
 
-exports.showdata=async(req,res)=>{
-    const showdata=await Usermodal.find()
+exports.showdata = async (req, res) => {
+    const showdata = await Usermodal.find()
 
     try {
         res.status(200).json({
@@ -29,9 +29,51 @@ exports.showdata=async(req,res)=>{
         })
     } catch (error) {
         res.status(404).json({
-            status:"fail",
-            Message:error.Message,
-            data:[]
+            status: "fail",
+            Message: error.Message,
+            data: []
         })
     }
 }
+exports.deletedata = async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        const deletedata = await Usermodal.findByIdAndDelete(userId);
+
+        res.status(200).json({
+            status: "success",
+            message: 'Data deleted successfully',
+            data: deletedata
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: "fail",
+            message: error.message,
+            data: []
+        });
+    }
+};
+
+
+exports.updatedata = async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        const updatedata = await Usermodal.findByIdAndUpdate(userId,req.body);
+
+        res.status(200).json({
+            status: "success",
+            message: 'Data updeted successfully',
+            data: updatedata
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: "fail",
+            message: error.message,
+            data: []
+        });
+    }
+};
+
+
